@@ -1,9 +1,12 @@
-exports.write= (req,res)=>{
-    const {passengerId, name, teamId, subject} = req.body
+const { bmi } = require('../service/basic.service');
+
+exports.getBmi = (req, res) =>{
+    const {name, height, weight} = req.body
     console.log(`넘어온 JSON 값 : ${JSON.stringify(req.body)}`)
-    console.log(`passengerId 값: ${passengerId}`)
-    console.log(`name 값 : ${name}`)
-    console.log(`teamId 값 : ${teamId}`)
-    console.log(`subject 값 : ${subject}`)
-    res.status(200).json({'result':'ok'})
-}
+    console.log(`이름 : ${name}`)
+    console.log(`키 : ${height}`)
+    console.log(`몸무게 : ${weight}`)
+    const json = bmi({name, height, weight})
+    console.log(`계산된 JSON 값 : ${JSON.stringify(json)}`)
+    res.status(200).json(json)
+  }
