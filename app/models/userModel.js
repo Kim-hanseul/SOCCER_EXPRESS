@@ -1,11 +1,10 @@
-module.exports = mongoose => {
-    return mongoose.model(
-        'user',
+export default function UserModel(mongoose){
+    mongoose.model('user',
         mongoose.Schema(
-            {userid: String,
-                password: String,
+            {   userid: String,
+                password: String,  
                 email: String,
-                name: String,
+                name: String,  
                 phone: String,
                 birth: String,
                 address: String
