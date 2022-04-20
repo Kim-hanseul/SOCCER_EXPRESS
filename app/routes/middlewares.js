@@ -3,9 +3,6 @@ const jwt = require('jsonwebtoken');
 exports.verifyToken = (req, res, next) => {
   // 인증 완료
   try {
-      console.log(' ##### 보안 작동 #####')
-      console.log(process.env.JWT_SECRET)
-      console.log(' ##### ##### #####')
     req.decoded = jwt.verify(req.headers.authorization, process.env.JWT_SECRET)
     return next();
   }

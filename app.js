@@ -3,16 +3,18 @@ const express = require('express');
 const app = express();
 const { port, MONGO_URI } = process.env;
 const cors = require('cors')
+
 const tokenRouter = require('./app/routes/token');
 app.use('/token', tokenRouter);
-//const { verifyToken } = require('./middlewares');
+// const { verifyToken } = require('./middlewares');
+
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors()); 
 const APP = './app/routes'
 // const nodes = ['admin','basic','board','game','todo','user']
-const nodes = ['basic','board','user', 'todo']
+const nodes = ['basic','board','user','todo']
 for(const leaf of nodes){
   require(`${APP}/${leaf}.route`)({url:`/api/${leaf}`,app})
 }
@@ -31,9 +33,9 @@ db.mongoose
         process.exit();
 });
 app.listen(port, () => {
-  console.log('***************** ***************** ******************')
+  console.log('***************** ***************** *****************')
   console.log('********** 서버가 정상적으로 실행되고 있습니다 *********')
-  console.log('***************** ***************** ******************')
+  console.log('***************** ***************** *****************')
 })
 app.get('/', (req, res) => {
   res.json({"현재 시간 : ":new Date().toLocaleString()})
@@ -41,3 +43,5 @@ app.get('/', (req, res) => {
 app.get('/api/now', cors(corsOptions),(req, res) => {
   res.json({"now":new Date().toLocaleString()})
 })
+
+
