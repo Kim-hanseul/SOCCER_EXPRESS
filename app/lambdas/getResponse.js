@@ -1,4 +1,5 @@
-export default function ResponseService(){
+
+const getResponse = () =>{
     return {
         successResponse(res, msg) {
             var data = {
@@ -47,3 +48,5 @@ export default function ResponseService(){
         }
     }
 }
+
+export default getResponse
